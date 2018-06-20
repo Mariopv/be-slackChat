@@ -34,7 +34,7 @@ public class MessageController {
     public ResponseEntity<String> receiveMessageFromSlack(@RequestBody SlackDto slackDto) {
         if(slackDto.getChallenge() != null && !slackDto.getChallenge().isEmpty()){
             return ResponseEntity.ok(slackDto.getChallenge());
-        }else if(messageService.receiveAndForwardMessageFromSlack(slackDto)){
+        }else if(messageService.receiveFromSlackAndForwardMessage(slackDto)){
             return ResponseEntity.ok().build();
         }else{
             return ResponseEntity.badRequest().body("error receiving from Slack");

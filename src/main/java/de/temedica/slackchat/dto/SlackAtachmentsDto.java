@@ -7,7 +7,6 @@ import lombok.Setter;
 @Setter
 public class SlackAtachmentsDto {
 
-    //private String fallback;
     private String author_name;
 
 }

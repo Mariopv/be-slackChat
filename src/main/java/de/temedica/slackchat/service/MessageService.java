@@ -19,6 +19,9 @@ public class MessageService {
     @Autowired
     private SlackMessageRepository slackMessageRepository;
 
+    @Autowired
+    private WebSocketService webSocketService;
+
     private static final String SLACK_WEB_HOOK_URL = "https://hooks.slack.com/services/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";
 
     public boolean sendToSlack(SlackMessageDto slackMessageDto){
@@ -54,8 +57,8 @@ public class MessageService {
         return slackDtoList;
     }
 
-    public boolean receiveAndForwardMessageFromSlack(SlackDto slackDto){
-        //TO-DO:Send to socket
+    public boolean receiveFromSlackAndForwardMessage(SlackDto slackDto){
+        webSocketService.onReceivedMessage(slackDto);
         return true;
     }
 }
