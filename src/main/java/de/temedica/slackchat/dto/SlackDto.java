@@ -4,6 +4,8 @@ import de.temedica.slackchat.persistence.models.SlackMessage;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 public class SlackDto {
@@ -19,7 +21,7 @@ public class SlackDto {
     private String user;
     private String ts;
 
-    private SlackAtachmentsDto attachments;
+    private List<SlackAtachmentsDto> attachments;
 
     public static SlackDto createFromMessage (SlackMessage slackMessage){
         SlackDto slackDto = new SlackDto();

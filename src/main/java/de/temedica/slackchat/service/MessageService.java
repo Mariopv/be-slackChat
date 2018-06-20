@@ -29,20 +29,20 @@ public class MessageService {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 
-        SlackChannelDto slackChannelDto = new SlackChannelDto();
-        slackChannelDto.setText(slackMessageDto.getText());
+        SlackDto slackDto = new SlackDto();
+        slackDto.setText(slackMessageDto.getText());
         SlackAtachmentsDto slackAtachmentsDto= new SlackAtachmentsDto();
         slackAtachmentsDto.setAuthor_name(slackMessageDto.getUser());
         List<SlackAtachmentsDto> atachmentsDtos = new LinkedList<>();
         atachmentsDtos.add(slackAtachmentsDto);
-        slackChannelDto.setAttachments(atachmentsDtos);
+        slackDto.setAttachments(atachmentsDtos);
 
-        HttpEntity<SlackChannelDto> entity = new HttpEntity<>(slackChannelDto, headers);
+        HttpEntity<SlackDto> entity = new HttpEntity<>(slackDto, headers);
         ResponseEntity<String> response = restTemplate.postForEntity(SLACK_WEB_HOOK_URL, entity,String.class);
 
         if(response.getStatusCode()== HttpStatus.OK){
-            //SlackMessage slackMessage = new SlackMessage(slackDto.getText(),slackDto.getChannel(),slackDto.getUser(),slackDto.getTs());
-            //slackMessageRepository.save(slackMessage);
+            SlackMessage slackMessage = new SlackMessage(slackDto.getText(),slackDto.getChannel(),slackDto.getUser(),slackDto.getTs());
+            slackMessageRepository.save(slackMessage);
             return true;
         }
         return false;
@@ -55,7 +55,8 @@ public class MessageService {
         return slackDtoList;
     }
 
-    public void receiveMessageFromSlack(SlackDto slackDto){
+    public boolean receiveAndForwardMessageFromSlack(SlackDto slackDto){
         //TO-DO:Send to socket
+        return true;
     }
 }

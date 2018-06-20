@@ -1,6 +1,5 @@
 package de.temedica.slackchat.api;
 
-import de.temedica.slackchat.dto.SlackAtachmentsDto;
 import de.temedica.slackchat.dto.SlackDto;
 import de.temedica.slackchat.dto.SlackMessageDto;
 import de.temedica.slackchat.service.MessageService;
@@ -33,15 +32,13 @@ public class MessageController {
 
     @PostMapping(value = {"/receive"},consumes = MediaType.APPLICATION_JSON_VALUE )
     public ResponseEntity<String> receiveMessageFromSlack(@RequestBody SlackDto slackDto) {
-
-        /*if(slackDto.getChallenge() == null){
+        if(slackDto.getChallenge() == null){
             return ResponseEntity.ok(slackDto.getChallenge());
-        }else if(messageService.sendToSlack(slackDto)){
+        }else if(messageService.receiveAndForwardMessageFromSlack(slackDto)){
             return ResponseEntity.ok().build();
         }else{
-            return ResponseEntity.badRequest().body("error sending to Slack");
-        }*/
-        return ResponseEntity.ok().build();
+            return ResponseEntity.badRequest().body("error receiving from Slack");
+        }
     }
 
     @GetMapping(value = {"/{username}"})
