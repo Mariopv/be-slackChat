@@ -21,6 +21,8 @@ public class SlackDto {
     private String user;
     private String ts;
 
+    private SlackMessageDto event;
+
     private List<SlackAtachmentsDto> attachments;
 
     public static SlackDto createFromMessage (SlackMessage slackMessage){

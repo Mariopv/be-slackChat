@@ -1,7 +1,6 @@
 package de.temedica.slackchat.service;
 
 import de.temedica.slackchat.dto.SlackAtachmentsDto;
-import de.temedica.slackchat.dto.SlackChannelDto;
 import de.temedica.slackchat.dto.SlackDto;
 import de.temedica.slackchat.dto.SlackMessageDto;
 import de.temedica.slackchat.persistence.SlackMessageRepository;
@@ -13,7 +12,6 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class MessageService {
@@ -41,7 +39,8 @@ public class MessageService {
         ResponseEntity<String> response = restTemplate.postForEntity(SLACK_WEB_HOOK_URL, entity,String.class);
 
         if(response.getStatusCode()== HttpStatus.OK){
-            SlackMessage slackMessage = new SlackMessage(slackDto.getText(),slackDto.getChannel(),slackDto.getUser(),slackDto.getTs());
+            SlackMessage slackMessage = new SlackMessage(slackMessageDto.getText(),slackMessageDto.getChannel(),
+                    slackMessageDto.getUser(),slackMessageDto.getTs());
             slackMessageRepository.save(slackMessage);
             return true;
         }
