@@ -32,7 +32,7 @@ public class MessageController {
 
     @PostMapping(value = {"/receive"},consumes = MediaType.APPLICATION_JSON_VALUE )
     public ResponseEntity<String> receiveMessageFromSlack(@RequestBody SlackDto slackDto) {
-        if(slackDto.getChallenge() == null){
+        if(slackDto.getChallenge() != null && !slackDto.getChallenge().isEmpty()){
             return ResponseEntity.ok(slackDto.getChallenge());
         }else if(messageService.receiveAndForwardMessageFromSlack(slackDto)){
             return ResponseEntity.ok().build();
