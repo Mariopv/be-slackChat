@@ -57,8 +57,7 @@ public class MessageService {
         return slackDtoList;
     }
 
-    public boolean receiveFromSlackAndForwardMessage(SlackDto slackDto){
+    public void receiveFromSlackAndForwardMessage(SlackDto slackDto){
         webSocketService.onReceivedMessage(slackDto);
-        return true;
     }
 }
