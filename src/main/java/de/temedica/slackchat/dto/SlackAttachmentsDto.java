@@ -5,8 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class SlackAtachmentsDto {
+public class SlackAttachmentsDto {
 
     private String author_name;
-
 }

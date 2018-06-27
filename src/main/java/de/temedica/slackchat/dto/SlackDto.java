@@ -23,7 +23,7 @@ public class SlackDto {
 
     private SlackMessageDto event;
 
-    private List<SlackAtachmentsDto> attachments;
+    private List<SlackAttachmentsDto> attachments;
 
     public static SlackDto createFromMessage (SlackMessage slackMessage){
         SlackDto slackDto = new SlackDto();
@@ -33,7 +33,5 @@ public class SlackDto {
         slackDto.setTs(slackMessage.getTs());
 
         return slackDto;
-
     }
-
 }

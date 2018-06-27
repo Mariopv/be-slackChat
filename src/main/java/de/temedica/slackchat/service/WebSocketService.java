@@ -17,7 +17,7 @@ public class WebSocketService {
         this.template = template;
     }
 
-    public void onReceivedMessage(SlackDto slackDto){
+    public void forwardMessage(SlackDto slackDto){
         this.template.convertAndSend("/slackchat",  new SimpleDateFormat("HH:mm:ss").format(new Date())+"- "+ slackDto);
     }
 }

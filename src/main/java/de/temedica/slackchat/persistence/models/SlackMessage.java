@@ -1,6 +1,5 @@
 package de.temedica.slackchat.persistence.models;
 
-import de.temedica.slackchat.dto.SlackDto;
 import lombok.Getter;
 import lombok.Setter;
 
