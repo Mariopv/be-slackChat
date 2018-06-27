@@ -5,9 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 @Service
 public class WebSocketService {
     private final SimpMessagingTemplate template;
@@ -18,6 +15,6 @@ public class WebSocketService {
     }
 
     public void forwardMessage(SlackDto slackDto){
-        this.template.convertAndSend("/slackchat",  new SimpleDateFormat("HH:mm:ss").format(new Date())+"- "+ slackDto);
+        this.template.convertAndSend("/slackchat",  slackDto);
     }
 }
